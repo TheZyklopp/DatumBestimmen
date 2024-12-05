@@ -82,55 +82,20 @@ namespace DatumBestimmen
 
         public static Wochentag ErmittleWochentag(int tag, int monat, int jahr)
         {
-            // Schritt 1: Monatsnummer ermitteln
-            MonatGregorianisch monatGregorianisch = (MonatGregorianisch)monat;
-
-            // Schritt 2: Monatswert für die Berechnung (MonatJulianisch)
-            MonatJulianisch monatJulianisch = ErmittleJulianischenMonat(monatGregorianisch);
-
-            // Anpassung für Januar und Februar (Algorithmusvorgabe)
-            if (monatJulianisch == MonatJulianisch.Januar || monatJulianisch == MonatJulianisch.Februar)
+            if (monat < 3)
             {
+                monat += 12;
                 jahr -= 1;
             }
 
-            // Schritt 3: Wochentag berechnen
-            int m = (int)monatJulianisch;
-            int k = jahr % 100; //24 letzten zahlen
-            int j = jahr / 100; //20 ersten zahlen
+            int k = jahr % 100; // letzten zwei Ziffern des Jahres
+            int j = jahr / 100; // ersten zwei Ziffern des Jahres
 
-            // Algorithmus von Georg Glaeser
-            int h = (tag + ((13 * m - 1) / 5) + k + (k / 4) + (j / 4) - (2 * j)) % 7;
+            // Zeller-Algorithmus
+            int h = (tag + (13 * (monat + 1)) / 5 + k + (k / 4) + (j / 4) + 5 * j) % 7;
 
-            // h kann negativ sein, deshalb die Anpassung für das korrekte Enum-Mapping
-            if (h < 0)
-            {
-                h += 7;
-            }
-
-            return (Wochentag)h;
-        }
-
-        public static MonatJulianisch ErmittleJulianischenMonat(MonatGregorianisch monat)
-        {
-            // Mapping der gregorianischen Monate auf die julianischen
-            // tauscht also die Monatsangaben von z.b. april 4 zu 2
-            switch (monat)
-            {
-                case MonatGregorianisch.Januar: return MonatJulianisch.Januar;
-                case MonatGregorianisch.Februar: return MonatJulianisch.Februar;
-                case MonatGregorianisch.März: return MonatJulianisch.März;
-                case MonatGregorianisch.April: return MonatJulianisch.April;
-                case MonatGregorianisch.Mai: return MonatJulianisch.Mai;
-                case MonatGregorianisch.Juni: return MonatJulianisch.Juni;
-                case MonatGregorianisch.Juli: return MonatJulianisch.Juli;
-                case MonatGregorianisch.August: return MonatJulianisch.August;
-                case MonatGregorianisch.September: return MonatJulianisch.September;
-                case MonatGregorianisch.Oktober: return MonatJulianisch.Oktober;
-                case MonatGregorianisch.November: return MonatJulianisch.November;
-                case MonatGregorianisch.Dezember: return MonatJulianisch.Dezember;
-                default: throw new ArgumentOutOfRangeException(nameof(monat), "Ungültiger Monat.");
-            }
+            // Anpassung für das korrekte Enum-Mapping
+            return (Wochentag)((h + 6) % 7);
         }
 
         public enum Wochentag
@@ -142,38 +107,6 @@ namespace DatumBestimmen
             Donnerstag = 4,
             Freitag = 5,
             Samstag = 6
-        }
-
-        public enum MonatGregorianisch
-        {
-            Januar = 1,
-            Februar = 2,
-            März = 3,
-            April = 4,
-            Mai = 5,
-            Juni = 6,
-            Juli = 7,
-            August = 8,
-            September = 9,
-            Oktober = 10,
-            November = 11,
-            Dezember = 12
-        }
-
-        public enum MonatJulianisch
-        {
-            Januar = 11,
-            Februar = 12,
-            März = 1,
-            April = 2,
-            Mai = 3,
-            Juni = 4,
-            Juli = 5,
-            August = 6,
-            September = 7,
-            Oktober = 8,
-            November = 9,
-            Dezember = 10
         }
     }
 }
