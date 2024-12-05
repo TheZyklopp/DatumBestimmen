@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatumBestimmen", "DatumBestimmen\DatumBestimmen.csproj", "{9530D819-5D6A-43C7-9641-FA1C6CD136F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9530D819-5D6A-43C7-9641-FA1C6CD136F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9530D819-5D6A-43C7-9641-FA1C6CD136F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9530D819-5D6A-43C7-9641-FA1C6CD136F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9530D819-5D6A-43C7-9641-FA1C6CD136F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F028EAB-FD42-493E-AF3D-72B455DFB52C}
+	EndGlobalSection
+EndGlobal
